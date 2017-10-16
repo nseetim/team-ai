@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup as bs
 
 # test urls - uncomment one url at a time 
 
-url_to_fetch = "http://www.pulse.ng/sports/manchester-united-liverpool-draw-0-0-id7460504.html"
-# url_to_fetch = "http://www.pulse.ng/entertainment/celebrities/5-celebrities-who-died-just-before-their-prime-id7447346.html"
+# url_to_fetch = "http://www.pulse.ng/sports/manchester-united-liverpool-draw-0-0-id7460504.html"
+url_to_fetch = "http://www.pulse.ng/entertainment/celebrities/5-celebrities-who-died-just-before-their-prime-id7447346.html"
 # url_to_fetch = "http://www.pulse.ng/sports/football/arsene-wenger-manager-admits-ozil-sanchez-could-leave-in-january-id7451069.html"
 # url_to_fetch = "http://www.pulse.ng/sports/football/barcelona-fc-what-next-for-football-club-in-case-of-catalan-independence-id7443368.html"
 # url_to_fetch = "http://www.pulse.ng/news/politics/femi-adesina-calls-ezekwesili-a-wailing-wailer-id7465827.html"
@@ -30,7 +30,7 @@ def get_head_line(BeautifulSoupObject):
 	return head_line.h2
 	
 
-# returns a list of images in a particular blog post
+# returns a list of objects of images in a particular blog post
 # accepts beautiful soup object of the page in question
 
 def get_picture_urls(BeautifulSoupObject):
@@ -50,18 +50,24 @@ def get_picture_urls(BeautifulSoupObject):
 
 	return blog_images
 
+# accepts Beautiful Soup Object
+# returns the story, i.e the content of the article in question
 
 def get_article_story(BeautifulSoupObject):
 	soup_obj = BeautifulSoupObject
 
-	snippet = soup.find_all('div', attrs={"class",'articleHeader'})
+	story = soup.find_all('div', attrs={"class",'vspace'})[2]
 
-	print (snippet)
-	return snippet
+	return story.get_text()
+
+# accepts Beautiful Soup Object
+# returns a snippet and sumamry of the article in question
 
 def get_article_snippet(BeautifulSoupObject):
 	soup_obj = BeautifulSoupObject
 
+	snippet = soup.find('div', attrs={"class",'articleHeader'})
+	return snippet.p.get_text()
 
 
 def get_article_comments():
@@ -72,5 +78,5 @@ def get_options_from_social_media():
 
 
 soup = get_article(url_to_fetch)
-get_picture_urls(soup)
-# get_article_snippet(soup)
+# get_picture_urls(soup)
+get_article_story(soup)
