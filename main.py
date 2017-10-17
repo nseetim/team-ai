@@ -16,7 +16,7 @@ queue = Queue.Queue()
 HngSpider(PROJECT_NAME, HOMEPAGE, DOMAIN_NAME)
 
 
-# Create worker threads (will die when main exits)
+# Create the worker threads (will die when main exits)
 def create_workers():
     for _ in range(NUMBER_OF_THREADS):
         t = threading.Thread(target=work)
