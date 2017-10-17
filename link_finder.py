@@ -1,5 +1,5 @@
-from html.parser import HTMLParser
-from urllib import parse
+from HTMLParser import HTMLParser
+from urlparse import urlparse
 
 
 class LinkFinder(HTMLParser):

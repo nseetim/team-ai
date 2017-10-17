@@ -1,11 +1,12 @@
-from urllib.request import urlopen
+from urllib import urlopen
 from link_finder import LinkFinder
+from domain import *
 from general import *
 
 
 class HngSpider:
 
-    # Class Variables (Shared among all instanes)
+    # Class Variables (Shared among all instances)
     project_name = ''
     base_url = ''
     domain_name = ''
@@ -21,7 +22,7 @@ class HngSpider:
         HngSpider.queue_file = HngSpider.project_name + '/queue.txt'
         HngSpider.crawled_file = HngSpider.project_name + '/crawled.txt'
         self.boot()
-        self.crawl_page('First Spider', HngSpider.base_url)
+        self.crawl_page('First spider', HngSpider.base_url)
 
     @staticmethod  # Since boot is a static method
     def boot():
